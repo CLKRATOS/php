@@ -1,0 +1,56 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.conteine{
+    border:1px solid;
+    height:400px;
+    width: 440px;
+    display: flex;
+    align-items: center;
+}
+.box-login{
+    position: relative;
+    width:100%;
+    border:1px solid black;
+
+}
+.box-login h1{
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+.box-login .box-input {
+    position:relative;
+    margin: 30px 0 ;
+    padding: 0 30px;
+}
+.box-input input{
+    width: 100%;
+    font-size:1em;
+    padding:10px;
+    outline: none;
+    border-radius:4px;
+    border:1px solid black;
+
+}
+.box-input label{
+    position: absolute;
+    top:12px;
+    left:40px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.798);
+
+}
+
+input:focus  lab{
+   background-color: aqua;
+}
