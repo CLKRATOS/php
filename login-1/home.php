@@ -15,6 +15,7 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/73a6f8e3a4.js" crossorigin="anonymous"></script>
     <style>
         *{
             margin: 0;
@@ -26,39 +27,119 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
             font-family: sans-serif;
             
         }
-        header{
+        .box-header{
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 20px;
-            background-color: red;
+            padding: 38px 20px;
+            background-color: rgb(0, 157, 172);
             color: white;
         }
-        ul{
-            display: flex;
-            gap: 30px;
 
-            list-style: none;
-            border: 1px solid;
-
+        .box-pesquisa{
+            padding: 10px;
+            width: 350px;
+            position: relative;
+            margin-right: 140px;
+        }
+        .box-pesquisa input{
+            width: 100%;
+            font-size: 1.1em;
+            padding: 10px 10px;
+            padding-right:30px ;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            color: rgba(0, 0, 0, 0.554);
+            
+        }
+        .box-pesquisa i{
+            position: absolute;
+            right: 20px;
+            top:23px;
+            color:black;
+           
         }
 
+        .box-usuario{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            text-align: center;
+            color:black;
+            font-weight: 700;
+            position: relative;
+        }
+        .nome{
+            position: absolute;
+            right: 140px;
+            width: 200px;
+        }
+        .box-sistema {
+            margin: auto;
+            text-align: center;
+           
+            
+        }
+        .box-sistema ul{
+            display: flex;
+            gap: 80px;
+            list-style: none;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.454);
+            padding: 10px;
+            text-transform: capitalize;
+            
+
+        }
+        .box-sistema ul li{
+            padding:5px 10px;
+        }
+        .box-sistema ul li:hover{
+            
+            color: darkcyan;
+            padding:5px 10px;
+            border-radius:4px;
+            transition: .5s all linear;
+        }
+       
 
     </style>
 </head>
 <body>
     <header>
-        <h1>logo cl</h1>
-        <ul>
-            <li>inicio</li>
-            <li>Usuário</li>
-            <li>Edito</li>
-            <li>Livro</li>
-            <li>Aluguel</li>
-            <li>sair</li>
-        </ul>
+        <div class="box-header">
+            <h1>Livraria CL</h1>
+            <div class="box-pesquisa">
+                <input type="text" name="pesquisa">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="box-usuario">
+                <div class="nome">
+                    <i class="fa-sharp fa-solid fa-circle-user fa-2xl" style="color:black; "></i><br><br>
+                    <p>Olá , sejá bem vindo</p>
+                    <p><?php echo $_SESSION['nome'] ?></p>
+                </div>
+                <div class="box-sair">
+                    <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
+                    sair
+                </div>
+            </div>
+        </div>
+        <div class="box-sistema">
+            <ul>
+                <li>inicio</li>
+                <li>Usuário</li>
+                <li>Edito</li>
+                <li>Livro</li>
+                <li>Aluguel</li>
+                
+            </ul>
+        </div>
     </header>
-    <p>ola <?php echo $_SESSION['nome'];?></p>
+   
 
 </body>
 </html>
