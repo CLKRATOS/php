@@ -30,7 +30,7 @@
         <?php 
 
             if (!isset($_GET['buscar'])) {
-                 echo "não deu certo";
+                echo "não deu certo";
             
             }else{
                 $ps = mysqli_real_escape_string($conexao,$_GET['buscar']);

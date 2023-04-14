@@ -3,12 +3,13 @@ session_start();
 if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
         unset($_SESSION['nome']);
         unset($_SESSION['senha']);
-        header("location:../index.php");
+        header("location:index.php");
+        echo "ola";
     }
 
 ?>
 <!DOCTYPE html>
-<html lang="py-br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -120,11 +121,13 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
                 <div class="nome">
                     <i class="fa-sharp fa-solid fa-circle-user fa-2xl" style="color:black; "></i><br><br>
                     <p>Olá , sejá bem vindo</p>
-                    <p><?php echo $_SESSION['nome'] ?></p>
+                    <p><?php echo $_SESSION['nome']; ?></p>
                 </div>
                 <div class="box-sair">
-                    <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
-                    sair
+                    <a href="conexao/sair.php">
+                        <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
+                        sair
+                    </a>
                 </div>
             </div>
         </div>
@@ -139,6 +142,7 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
             </ul>
         </div>
     </header>
+  
    
 
 </body>

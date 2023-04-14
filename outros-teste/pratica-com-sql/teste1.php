@@ -2,7 +2,7 @@
 
 $dbhome = "localhost";
 $dbnome = "root";
-$dbsenha = "";
+$dbsenha = "admin";
 $dbbanco = "cadastro";
 
 $conexao = @mysqli_connect($dbhome,$dbnome,$dbsenha,$dbbanco) or die("conexão não deu certo");
