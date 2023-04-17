@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina de login | teste 1</title>
+    <title>Document</title>
     <style>
         *{
             margin: 0;
@@ -18,7 +17,7 @@
             align-items: center;
             height: 100vh;
             font-family: sans-serif;
-            background-image:linear-gradient( 50deg, rgb(0, 157, 172),rgb(0, 157, 123));
+            background-image:linear-gradient( 50deg, rgb(0, 117, 172),rgb(0, 200, 10));
         }
         main{
             background-color: rgba(255, 255, 255, 1.875);
@@ -36,7 +35,6 @@
             margin: 25px;
         }
         main .box-input{
-            margin: 10px 0;
             padding:15px 5px;
             position: relative;
         }
@@ -63,7 +61,7 @@
         main .box-input input:focus ~label,
         main .box-input input:valid ~label{
             top:8px;
-            left:7px;
+            left: 7px;
             font-size: 0.8em;
             padding-right: 4px;
             padding-left: 4px;
@@ -96,42 +94,38 @@
             box-shadow: 2px 3px 5px black;
             text-shadow: 2px 3px 3px black;
         }
-        main .box-btn ol{
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 10px ;
-            
-        }
-        main .box-btn ol li a{
+        main .box-btn a {
+            text-align: left;
+            border: 1px solid;
             text-decoration: none;
-            font-weight: 700;
+            margin: 10px;
             color: black;
-        }
-        main .box-btn ol li a:hover{
-
-            color: rgba(0, 0, 0, 0.726);
         }
     </style>
 </head>
 <body>
     <main>
-        <form action="conexao/L-conexao.php" method="POST">
+        <form action="c-usuario.php" method="post">
             <h1>Fazer Login</h1>
-            <div class="box-input"> 
+            <div class="box-input">
                 <input type="text" name="nome_usuario" required >
-                <label for="nome">Nome</label>
+                <label for="nome">Nome do usuario</label>
             </div>
             <div class="box-input">
-                <input type="password" name="senha" required >
-                <label for="nome">Senha</label>
+                <input type="text" name="cidade" required >
+                <label for="nome">cidade</label>
+            </div>
+            <div class="box-input">
+                <input type="text" name="endereco" required >
+                <label for="nome">Endereço</label>
+            </div>
+            <div class="box-input">
+                <input type="email" name="email" required >
+                <label for="nome">Email</label>
             </div>
             <div class="box-btn">
-                <input type="submit" value="login" name="login">
-                <ol>
-                    <li><a href="index.php">volta</a></li>
-                    <li><a href="cadastro.php">fazer Cadrastro</a></li>
-                </ol>
+                <input type="submit" value="cadrastra" name="cadrastra">
+                <a href="../sistema/usuario.php">volta</a>
             </div>
         </form>
     </main>

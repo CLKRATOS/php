@@ -17,7 +17,7 @@
             align-items: center;
             height: 100vh;
             font-family: sans-serif;
-            background-image:linear-gradient( 50deg, black,blue);
+            background-image:linear-gradient( 50deg, rgb(0, 117, 172),rgb(0, 200, 10));
         }
         main{
             background-color: rgba(255, 255, 255, 1.875);

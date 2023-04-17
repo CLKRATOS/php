@@ -1,11 +1,11 @@
 <?php 
 
-    $dbhost = "localhost";
-    $dbnome = "root";
-    $dbsenha = "";
-    $dbbanco = "cadatro";
+    // $dbhost = "localhost";
+    // $dbnome = "root";
+    // $dbsenha = "";
+    // $dbbanco = "cadatro";
 
-    $conexao = @mysqli_connect($dbhost,$dbnome,$dbsenha,$dbbanco) or die("conexão ruim");
+    // $conexao = @mysqli_connect($dbhost,$dbnome,$dbsenha,$dbbanco) or die("conexão ruim");
     // echo "conexão boa<hr>";
 
     if(isset($_POST['dados']) && !empty($_POST['name'])){

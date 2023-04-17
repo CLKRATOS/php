@@ -15,7 +15,7 @@
         if(mysqli_num_rows($sql_query) == 1){
             $_SESSION['nome'] =  $name = $_POST['nome_usuario'];
             $_SESSION['senha'] =  $name = $_POST['senha'];
-            header("location:../home.php");
+            header("location:../sistema/home.php");
         }else{
             header("location:../login.php");
             unset($_SESSION['nome']);

@@ -1,11 +1,11 @@
 <?php 
 
-    $dbhost = "localhost";
-    $dbnome = "root";
-    $dbsenha = "";
-    $dbbanco = "cadastro";
+        // $dbhost = "localhost";
+        // $dbnome = "root";
+        // $dbsenha = "";
+        // $dbbanco = "cadastro";
 
-    $conexao = mysqli_connect($dbhost,$dbnome,$dbsenha,$dbbanco) or die ("Conexão ruim". mysqli_errno($conexao));
+        // $conexao = mysqli_connect($dbhost,$dbnome,$dbsenha,$dbbanco) or die ("Conexão ruim". mysqli_errno($conexao));
 
 
 ?>
