@@ -6,13 +6,12 @@
         unset($_SESSION['senha']);
         header("location:../index.php");
     }
-    if(isset($_GET['cadrastra']) && !empty($_GET['nome_usuario']) && !empty($_GET['cidade']) && !empty($_GET['endereco'] )&& !empty($_GET['email'])){
-        $nome = $_GET['nome_usuario'];
+    if(isset($_GET['cadrastra']) && !empty($_GET['nome_editora']) && !empty($_GET['cidade']) ){
+        $nome = $_GET['nome_editora'];
         $cidade = $_GET['cidade'];
-        $endereço = $_GET['endereco'];
-        $email = $_GET['email'];
-        $conexao -> query("INSERT INTO  usuarios value (default,'$nome','$cidade','$endereço','$email');");
-        header("location:../sistema/usuario.php");
+
+        $conexao -> query("INSERT INTO  editoras value (default,'$nome','$cidade');");
+        header("location:../sistema/editora.php");
     }
 ?>
 <!DOCTYPE html>
@@ -130,27 +129,19 @@
 </head>
 <body>
     <main>
-        <form action="c-usuario.php" >
-            <h1>Novo usuario</h1>
+        <form action="c-editora.php" >
+            <h1>Nova editora</h1>
             <div class="box-input">
-                <input type="text" name="nome_usuario" required >
-                <label for="nome">Nome do usuario</label>
+                <input type="text" name="nome_editora" required >
+                <label for="nome">Nome da editora</label>
             </div>
             <div class="box-input">
                 <input type="text" name="cidade" required >
                 <label for="nome">cidade</label>
             </div>
-            <div class="box-input">
-                <input type="text" name="endereco" required >
-                <label for="nome">Endereço</label>
-            </div>
-            <div class="box-input">
-                <input type="email" name="email" required >
-                <label for="nome">Email</label>
-            </div>
             <div class="box-btn">
                 <input type="submit" value="cadrastra" name="cadrastra">
-                <a href="../sistema/usuario.php">volta</a>
+                <a href="../sistema/editora.php">volta</a>
             </div>
         </form>
     </main>

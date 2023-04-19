@@ -159,7 +159,7 @@
         <div class="box-amostra">
             <div class="box-logo">
                 <h2>Editoras</h2>
-                <a href="#">Novo +</a>
+                <a href="../cadratro/c-editora.php">Novo +</a>
             </div>
             <div class="box-pes">
                 <form>

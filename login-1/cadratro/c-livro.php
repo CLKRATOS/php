@@ -6,13 +6,13 @@
         unset($_SESSION['senha']);
         header("location:../index.php");
     }
-    if(isset($_GET['cadrastra']) && !empty($_GET['nome_usuario']) && !empty($_GET['cidade']) && !empty($_GET['endereco'] )&& !empty($_GET['email'])){
-        $nome = $_GET['nome_usuario'];
-        $cidade = $_GET['cidade'];
-        $endereço = $_GET['endereco'];
-        $email = $_GET['email'];
-        $conexao -> query("INSERT INTO  usuarios value (default,'$nome','$cidade','$endereço','$email');");
-        header("location:../sistema/usuario.php");
+    if(isset($_GET['cadrastra']) && !empty($_GET['nome_livro'])  && !empty($_GET['autor'] )&& !empty($_GET['lancamento']) && !empty($_GET['quantidade'])){
+        $nome = $_GET['nome_livro'];    
+        $autor = $_GET['autor'];
+        $lancamento = $_GET['lancamento'];
+        $quantidade = $_GET['quantidade'];
+        $conexao -> query("INSERT INTO  livros value (default,'$nome',default,'$autor','$lancamento','$quantidade');");
+        header("location:../sistema/livro.php");
     }
 ?>
 <!DOCTYPE html>
@@ -133,20 +133,20 @@
         <form action="c-usuario.php" >
             <h1>Novo usuario</h1>
             <div class="box-input">
-                <input type="text" name="nome_usuario" required >
-                <label for="nome">Nome do usuario</label>
+                <input type="text" name="nome_livro" required >
+                <label for="nome">Nome do livro</label>
             </div>
             <div class="box-input">
-                <input type="text" name="cidade" required >
-                <label for="nome">cidade</label>
+                <input type="text" name="autor" required >
+                <label for="nome">Autor</label>
             </div>
             <div class="box-input">
-                <input type="text" name="endereco" required >
-                <label for="nome">Endereço</label>
+                <input type="date" value="" name="lancamento" required >
+                <label for="nome" style="top:8px;left: 7px;font-size: 0.8em;padding-right: 4px;padding-left: 4px;background-color:  rgba(255, 255, 255, 0.875);">data de Lançamento</label>
             </div>
             <div class="box-input">
-                <input type="email" name="email" required >
-                <label for="nome">Email</label>
+                <input type="lancamento" name="quantidade" required >
+                <label for="nome">Quantidade</label>
             </div>
             <div class="box-btn">
                 <input type="submit" value="cadrastra" name="cadrastra">

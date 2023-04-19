@@ -159,7 +159,7 @@
         <div class="box-amostra">
             <div class="box-logo">
                 <h2>Usuarios</h2>
-                <a href="#">Novo +</a>
+                <a href="../cadratro/c-usuario.php">Novo +</a>
             </div>
             <div class="box-pes">
                 <form>

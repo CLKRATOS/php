@@ -163,7 +163,7 @@
         <div class="box-amostra">
             <div class="box-logo">
                 <h2>Livros</h2>
-                <a href="#">Novo +</a>
+                <a href="../cadratro/c-livro.php">Novo +</a>
             </div>
             <div class="box-pes">
                 <form>
