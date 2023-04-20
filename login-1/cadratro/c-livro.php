@@ -14,7 +14,7 @@
     //     $conexao -> query("INSERT INTO  livros value (default,'$nome',default,'$autor','$lancamento','$quantidade');");
     //     header("location:../sistema/livro.php");
     // }
-    echo $_GET['editora'];
+    echo $_POST['editora'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -131,7 +131,7 @@
 </head>
 <body>
     <main>
-        <form action="c-usuario.php" >
+        <form action="c-livro.php" method="POST">
             <h1>Novo usuario</h1>
             <div class="box-input">
                 <input type="text" name="nome_livro" required >
@@ -140,14 +140,14 @@
             <div class="box-input">
                 <label for="nome">Editoras</label>
                 <select name="editora" id="editora">
-                <?php 
-                    $sql = mysqli_query($conexao,"SELECT * FROM editoras;");
-                    while ($cont = mysqli_fetch_assoc($sql)) {
-                        ?>
-                            <option value="<?php echo $cont['cod_editora']?>"><?php echo $cont['nome_editora']?></option>
-                        <?php
-                    }
-                ?>
+                    <?php 
+                        $sql = mysqli_query($conexao,"SELECT * FROM editoras;");
+                        while ($cont = mysqli_fetch_assoc($sql)) {
+                            ?>
+                                <option value="<?php echo $cont['cod_editora']?>"><?php echo $cont['nome_editora']?></option>
+                            <?php
+                        }
+                    ?>
                 </select>
             </div>
             <div class="box-input">
@@ -164,7 +164,7 @@
             </div>
             <div class="box-btn">
                 <input type="submit" value="cadrastra" name="cadrastra">
-                <a href="../sistema/usuario.php">volta</a>
+                <a href="#">volta</a>
             </div>
         </form>
     </main>
