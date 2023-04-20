@@ -6,14 +6,15 @@
         unset($_SESSION['senha']);
         header("location:../index.php");
     }
-    if(isset($_GET['cadrastra']) && !empty($_GET['nome_livro'])  && !empty($_GET['autor'] )&& !empty($_GET['lancamento']) && !empty($_GET['quantidade'])){
-        $nome = $_GET['nome_livro'];    
-        $autor = $_GET['autor'];
-        $lancamento = $_GET['lancamento'];
-        $quantidade = $_GET['quantidade'];
-        $conexao -> query("INSERT INTO  livros value (default,'$nome',default,'$autor','$lancamento','$quantidade');");
-        header("location:../sistema/livro.php");
-    }
+    // if(isset($_GET['cadrastra']) && !empty($_GET['nome_livro'])  && !empty($_GET['autor'] )&& !empty($_GET['lancamento']) && !empty($_GET['quantidade'])){
+    //     $nome = $_GET['nome_livro'];    
+    //     $autor = $_GET['autor'];
+    //     $lancamento = $_GET['lancamento'];
+    //     $quantidade = $_GET['quantidade'];
+    //     $conexao -> query("INSERT INTO  livros value (default,'$nome',default,'$autor','$lancamento','$quantidade');");
+    //     header("location:../sistema/livro.php");
+    // }
+    echo $_GET['editora'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -135,6 +136,19 @@
             <div class="box-input">
                 <input type="text" name="nome_livro" required >
                 <label for="nome">Nome do livro</label>
+            </div>
+            <div class="box-input">
+                <label for="nome">Editoras</label>
+                <select name="editora" id="editora">
+                <?php 
+                    $sql = mysqli_query($conexao,"SELECT * FROM editoras;");
+                    while ($cont = mysqli_fetch_assoc($sql)) {
+                        ?>
+                            <option value="<?php echo $cont['cod_editora']?>"><?php echo $cont['nome_editora']?></option>
+                        <?php
+                    }
+                ?>
+                </select>
             </div>
             <div class="box-input">
                 <input type="text" name="autor" required >
