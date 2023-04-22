@@ -1,21 +1,29 @@
 <?php 
-    include_once("../conexao/conexao.php");
+
     session_start();
-    if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
-        unset($_SESSION['nome']);
+     if((!isset($_SESSION['name']) == true) && (!isset($_SESSION['senha']) == true)){
+        unset($_SESSION['name']);
         unset($_SESSION['senha']);
         header("location:../index.php");
+     
     }
-    if(isset($_POST['cadrastra']) && !empty($_POST['nome_livro'])  && !empty($_POST['autor'] )&& !empty($_POST['lancamento']) && !empty($_POST['quantidade'])){
-        $nome = $_POST['nome_livro']; 
-        $editora = $_POST['editora']; 
-        $autor = $_POST['autor'];
-        $lancamento = $_POST['lancamento'];
-        $quantidade = $_POST['quantidade'];
-        $conexao -> query("INSERT INTO  livros value (default,'$nome','$editora','$autor','$lancamento','$quantidade');");
-        header("location:../sistema/livro.php");
+    require_once("../conexao/conexao.php");
+    if(!empty($_GET['id'])){
+        $id = $_GET['id'];    
+        $sql = $conexao -> query("SELECT * FROM usuarios where id_usuario = $id;");
+        if($sql -> num_rows == 1){
+            while($cont = mysqli_fetch_assoc($sql)){
+                $nome_usuario = $cont['nome_usuario'];
+                $cidade = $cont['cidade_usuario'];
+                $endereco = $cont['endereco'];
+                $email = $cont['email'];
+            }
+        }else{
+            header("location:../sistema/usuario.php");
+        }
+    }else{
+        header("location:../sistema/usuario.php");
     }
-      
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,8 +32,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <style>
-        @import url('https  fon .googleapis.com/css2? family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('https//:fonts.googleapis.com/css2? family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         *{
             font-family:  'Roboto', sans-serif;
             margin: 0;
@@ -132,40 +141,28 @@
 </head>
 <body>
     <main>
-        <form action="c-livro.php" method="POST">
-            <h1>Novo livro</h1>
+        <form action="../savEdit/s-usuario.phpw" method="post" >
+            <h1>Novo usuario</h1>
             <div class="box-input">
-                <input type="text" name="nome_livro" required >
-                <label for="nome">Nome do livro</label>
+                <input type="text" name="nome_usuario" value="<?php echo $nome_usuario;?>" required >
+                <label for="nome">Nome do usuario</label>
             </div>
             <div class="box-input">
-                <label for="nome">Editoras</label>
-                <select name="editora" id="editora">
-                    <?php 
-                        $sql = mysqli_query($conexao,"SELECT * FROM editoras;");
-                        while ($cont = mysqli_fetch_assoc($sql)) {
-                            ?>
-                                <option value="<?php echo $cont['cod_editora']?>"><?php echo $cont['nome_editora']?></option>
-                            <?php
-                        }
-                    ?>
-                </select>
+                <input type="text" name="cidade" value="<?php echo $cidade;?>" required >
+                <label for="nome">cidade</label>
             </div>
             <div class="box-input">
-                <input type="text" name="autor" required >
-                <label for="nome">Autor</label>
+                <input type="text" name="endereco" value="<?php echo $endereco;?>" required >
+                <label for="nome">Endereço</label>
             </div>
             <div class="box-input">
-                <input type="date" value="" name="lancamento" required >
-                <label for="nome" style="top:8px;left: 7px;font-size: 0.8em;padding-right: 4px;padding-left: 4px;background-color:  rgba(255, 255, 255, 0.875);">data de Lançamento</label>
+                <input type="email" name="email" value="<?php echo $email; ?>" required >
+                <label for="nome">Email</label>
             </div>
-            <div class="box-input">
-                <input type="lancamento" name="quantidade" required >
-                <label for="nome">Quantidade</label>
-            </div>
+            <input type="hidden" value="<?php echo $id?>" name="id">
             <div class="box-btn">
-                <input type="submit" value="cadrastra" name="cadrastra">
-                <a href="../sistema/livro.php">volta</a>
+                <input type="submit" value="salva" name="salva">
+                <a href="../sistema/usuario.php">volta</a>
             </div>
         </form>
     </main>

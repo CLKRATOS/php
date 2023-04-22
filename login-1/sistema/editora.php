@@ -127,10 +127,7 @@
                     <p>Olá,<?php echo $_SESSION['nome']; ?></p>
                 </div>
                 <div class="box-sair">
-                    <a href="../conexao/sair.php">
-                        <i class="fa-solid fa-right-to-bracket fa-xl"></i>
-                        <p>Sair</p>
-                    </a>
+                    <a href="../conexao/sair.php"> Sair</a>
                 </div>
             </div>
         </div>
@@ -143,7 +140,7 @@
                     <li>Usuário</li>
                 </a>
                 <a href="editora.php">
-                    <li>Editora</li>
+                    <li style="background-color: black; color:aliceblue; border-radius: 10px;">Editora</li>
                 </a>
                 <a href="livro.php">
                     <li>Livro</li>
@@ -164,7 +161,7 @@
             <div class="box-pes">
                 <form>
                     <input type="text" name="pusca"> 
-                    <button type="submit"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" style="background-color: transparent;"> <i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
     
@@ -175,7 +172,7 @@
                     <th>id</th>
                     <th>nome_editora</th>
                     <th>cidade</th>
-                    
+                    <th>Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -186,6 +183,7 @@
                             <td><?php echo $cont['cod_editora'];?></td>
                             <td><?php echo $cont['nome_editora'];?></td>
                             <td><?php echo $cont['cidade'];?></td>
+                            <td><a href="../edit/e-editora.php?id='<?php echo $cont['cod_editora'];?>'">edit</a></td>
                         </tr>                     
                         <?php
                     }

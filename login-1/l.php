@@ -1,6 +1,10 @@
-<?php 
+  <?php 
 
-    echo $_GET['o']
+    define("valo",100);
+    echo valo,"<br>";
+    $valo = array("valo","i","valo","i");
+    var_dump($valo);
+    echo gettype($valo);
 ?>
 
 <form  method="get">
@@ -10,4 +14,4 @@
         <option value="3">3</option>
     </select>
     <input type="submit">
-</form>
+</form> 

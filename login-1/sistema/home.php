@@ -18,12 +18,13 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
  
     <script src="https://kit.fontawesome.com/73a6f8e3a4.js" crossorigin="anonymous"></script>
     <style>
-        
+         @import url('https://fonts.googleapis.com/css2? family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: cursive;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+             
+            font-family:  'Roboto', sans-serif;
         }
         body{
             height: 100vh;
@@ -173,7 +174,7 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
 <body>
     <header>
         <div class="box-header">
-            <h2>Livraria CL</h2>
+            <h1>Livraria CL</h1>
             <div class="box-pesquisa">
                 <input type="text" name="pesquisa">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -196,7 +197,7 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
         <div class="box-sistema">
             <ul>
                 <a href="home.php">
-                    <li>inicio</li>
+                    <li style="background-color: black; color:aliceblue; border-radius: 10px;">inicio</li>
                 </a>
                 <a href="usuario.php">
                     <li>Usuário</li>

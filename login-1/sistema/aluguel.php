@@ -9,16 +9,16 @@
     include_once("../conexao/conexao.php");
     if(!empty($_GET['pusca'])){
         $pusca = $_GET['pusca'];
-        $sql_query = $conexao -> query("SELECT * FROM aluga where
-                                         cod_aluguel like '%$pusca%' or 
-                                         livro_cod like '%$pusca%' or
-                                         usuario_cod like '%$pusca%' or 
+        $sql_query = $conexao -> query("SELECT * FROM aluga,livros,usuarios where
+                                        aluga.livro_cod = livros.id_livro and aluga.usuario_cod = usuarios.id_usuario and 
+                                         (cod_aluguel like '%$pusca%' or 
+                                         nome_livro like '%$pusca%' or
+                                         nome_usuario like '%$pusca%' or 
                                          data_aluguel like '%$pusca%' or 
-                                         data_previsao like '%$pusca%' or 
-                                         data_devolucao like '%$pusca%';");
+                                         data_previsao like '%$pusca%') ;");
 
     }else{
-        $sql_query = $conexao -> query("SELECT * FROM aluga;");
+        $sql_query = $conexao -> query("SELECT * FROM aluga,livros,usuarios where aluga.livro_cod = livros.id_livro and aluga.usuario_cod = usuarios.id_usuario ;");
     }
 
 ?>
@@ -113,7 +113,7 @@
 </head>
 <body>
     
-<header>
+    <header>
         <div class="box-header">
             <h2>Livraria CL</h2>
             <div class="box-pesquisa">
@@ -130,10 +130,7 @@
                     <p>Olá,<?php echo $_SESSION['nome']; ?></p>
                 </div>
                 <div class="box-sair">
-                    <a href="../conexao/sair.php">
-                        <i class="fa-solid fa-right-to-bracket fa-xl"></i>
-                        <p>Sair</p>
-                    </a>
+                    <a href="../conexao/sair.php">Sair</a>
                 </div>
             </div>
         </div>
@@ -152,53 +149,53 @@
                     <li>Livro</li>
                 </a>
                 <a href="aluguel.php">
-                    <li>Aluguel</li>
+                    <li style="background-color: black; color:aliceblue; border-radius: 10px;">Aluguel</li>
                 </a>
                 
             </ul>
         </div>
-</header>
+    </header>
     <main>
-    <table>
-        <div class="box-amostra">
-            <div class="box-logo">
-                <h2>Aluguel</h2>
-                <a href="../cadratro/c-aluguel.php">Novo +</a>
+        <table>
+            <div class="box-amostra">
+                <div class="box-logo">
+                    <h2>Aluguel</h2>
+                    <a href="../cadratro/c-aluguel.php">Novo +</a>
+                </div>
+                <div class="box-pes">
+                    <form>
+                        <input type="text" name="pusca"> 
+                        <button type="submit" style="background-color: transparent;"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                </div>
+    
             </div>
-            <div class="box-pes">
-                <form>
-                    <input type="text" name="pusca"> 
-                    <button type="submit"> <i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
-            </div>
- 
-        </div>
-            <thead>
-                <tr>
-                    <th>codigo_aluguel</th>
-                    <th>livro_codigo</th>
-                    <th>usuario_codigo</th>
-                    <th>data_aluguel</th>
-                    <th>data_previsão</th>
-                    <th>data_devolução</th>                    
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                    while($cont = mysqli_fetch_assoc($sql_query)){
-                        ?>
-                        <tr>
-                            <td><?php echo $cont['cod_aluguel'];?></td>
-                            <td><?php echo $cont['livro_cod'];?></td>
-                            <td><?php echo $cont['usuario_cod'];?></td>
-                            <td><?php echo $cont['data_aluguel'];?></td>
-                            <td><?php echo $cont['data_previsao'];?></td>
-                            <td><?php echo $cont['data_devolucao'];?></td>
-                        </tr>                     
-                        <?php
-                    }
-                ?>
-            </tbody>
+                <thead>
+                    <tr>
+                        <th>codigo_aluguel</th>
+                        <th>livro_codigo</th>
+                        <th>usuario_codigo</th>
+                        <th>data_aluguel</th>
+                        <th>data_previsão</th>
+                                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        while($cont = mysqli_fetch_assoc($sql_query)){
+                            ?>
+                            <tr>
+                                <td><?php echo $cont['cod_aluguel'];?></td>
+                                <td><?php echo $cont['nome_livro'];?></td>
+                                <td><?php echo $cont['nome_usuario'];?></td>
+                                <td><?php echo $cont['data_aluguel'];?></td>
+                                <td><?php echo $cont['data_previsao'];?></td>
+                                
+                            </tr>                     
+                            <?php
+                        }
+                    ?>
+                </tbody>
         </table>
     </main>
 

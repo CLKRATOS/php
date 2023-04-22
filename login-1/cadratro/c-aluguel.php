@@ -6,14 +6,16 @@
         unset($_SESSION['senha']);
         header("location:../index.php");
     }
-    if(isset($_GET['cadrastra']) && !empty($_GET['nome_usuario']) && !empty($_GET['cidade']) && !empty($_GET['endereco'] )&& !empty($_GET['email'])){
-        $nome = $_GET['nome_usuario'];
-        $cidade = $_GET['cidade'];
-        $endereço = $_GET['endereco'];
-        $email = $_GET['email'];
-        $conexao -> query("INSERT INTO  usuarios value (default,'$nome','$cidade','$endereço','$email');");
-        header("location:../sistema/usuario.php");
+    if(isset($_GET['cadrastra']) && !empty($_GET['livro']) && !empty($_GET['usuario']) && !empty($_GET['aluguel'] )&& !empty($_GET['previsao'])){
+        echo  $livro = $_GET['livro'];
+        echo $usuario = $_GET['usuario'];
+        echo $aluguel = $_GET['aluguel'];
+        echo $previsao = $_GET['previsao'];
+        // $conexao -> query("INSERT INTO  aluga value (default,'$livro','$usuario','$aluguel','$previsao');");
+        // header("location:../sistema/aluguel.php");
+    
     }
+     
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,7 +25,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        @import url('https  fon .googleapis.com/css2? family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         *{
+            font-family:  'Roboto', sans-serif;
             margin: 0;
             padding:0;
             box-sizing: border-box;
@@ -74,18 +78,19 @@
             color: rgba(0, 0, 0, 0.715);
 
         }
-
-        main .box-input input:focus ~label,
-        main .box-input input:valid ~label{
-            top:8px;
-            left: 7px;
-            font-size: 0.8em;
-            padding-right: 4px;
-            padding-left: 4px;
-            background-color:  rgba(255, 255, 255, 0.875);
-            transition: 0.2s linear;
-
+        main .box-input select{
+            border:1px solid rgba(0, 0, 0, 0.515) ;
+            margin-top: 13px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            background-color:whitesmoke;
         }
+        main .box-input select option{
+            text-transform:capitalize;
+        }
+
+       
         main .box-input input:focus{
             border:1px solid black;
             color: black;
@@ -128,27 +133,45 @@
 </head>
 <body>
     <main>
-        <form action="c-usuario.php" >
-            <h1>Novo usuario</h1>
+        <form action="c-aluguel.php" >
+            <h1>Alugar</h1>
             <div class="box-input">
-                <input type="text" name="nome_usuario" required >
-                <label for="nome">Nome do usuario</label>
+                <label for="nome"> livro</label>
+                <select name="livro" id="livro">
+                    <?php 
+                        $sql = $conexao -> query("SELECT * FROM livros;");
+                        while($cont = mysqli_fetch_assoc($sql)){
+                            ?>
+                                <option value="<?php echo $cont['id_livro']?>"><?php echo $cont['nome_livro']?></option>
+                            <?php
+                        }
+                    ?>
+                </select>
             </div>
             <div class="box-input">
-                <input type="text" name="cidade" required >
-                <label for="nome">cidade</label>
+                <label for="nome" >usuario</label>
+                <select name="usuario" id="usuario" >
+                    <?php 
+                        $sql = $conexao -> query("SELECT * FROM usuarios;");
+                        while($cont = mysqli_fetch_assoc($sql)){
+                            ?>
+                                <option value="<?php echo $cont['id_usuario']?>"><?php echo $cont['nome_usuario']?></option>
+                            <?php
+                        }
+                    ?>
+                </select>
             </div>
             <div class="box-input">
-                <input type="text" name="endereco" required >
-                <label for="nome">Endereço</label>
+                <input type="date" name="aluguel" required  >
+                <label for="nome" style="top:8px;left: 7px;font-size: 0.8em;padding-right: 4px;padding-left: 4px;background-color:  rgba(255, 255, 255, 0.875);"  >data de aluguel</label>
             </div>
             <div class="box-input">
-                <input type="email" name="email" required >
-                <label for="nome">Email</label>
-            </div>
+                <input type="date" name="previsao" required  >
+                <label for="nome" style="top:8px;left: 7px;font-size: 0.8em;padding-right: 4px;padding-left: 4px;background-color:  rgba(255, 255, 255, 0.875);"  >data de previsão</label>
+            </div>  
             <div class="box-btn">
                 <input type="submit" value="cadrastra" name="cadrastra">
-                <a href="../sistema/usuario.php">volta</a>
+                <a href="../sistema/aluguel.php">volta</a>
             </div>
         </form>
     </main>

@@ -140,7 +140,7 @@
                     <li>inicio</li>
                 </a>
                 <a href="usuario.php">
-                    <li>Usuário</li>
+                    <li style="background-color: black; color:aliceblue; border-radius: 10px;">Usuário</li>
                 </a>
                 <a href="editora.php">
                     <li>Editora</li>
@@ -164,7 +164,7 @@
             <div class="box-pes">
                 <form>
                     <input type="text" name="pusca"> 
-                    <button type="submit"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" style="background-color: transparent;"> <i class="fa-solid fa-magnifying-glass" ></i></button>
                 </form>
             </div>
  
@@ -178,6 +178,7 @@
                         <th>cidade_usuario</th>
                         <th>endereco</th>
                         <th>email</th>
+                        <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -190,6 +191,7 @@
                                 <td><?php echo $cont['cidade_usuario'];?></td>
                                 <td><?php echo $cont['endereco'];?></td>
                                 <td><?php echo $cont['email'];?></td>
+                                <td><a href="../edit/e-usuario.php?id='<?php echo $cont['id_usuario'];?>'">edit</a></td>
                             </tr>
                             <?php
                         }

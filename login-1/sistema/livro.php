@@ -10,16 +10,17 @@
     
     if(!empty($_GET['pusca'])){
         $pusca = $_GET['pusca'];
-        $sql_query = $conexao -> query("SELECT * FROM livros where
-                                         id_livro like '%$pusca%' or 
-                                         nome_livro like '%$pusca%' or
-                                         editora_cod like '%$pusca%' or 
-                                         autor like '%$pusca%' or 
-                                         lancamento like '%$pusca%' or 
-                                         quantidade like '%$pusca%';");
+        $sql_query = $conexao -> query("SELECT * FROM livros,editoras where 
+                                        livros.editora_cod = Neditoras.cod_editora and(           
+                                        id_livro like '%$pusca%' or 
+                                        nome_livro like '%$pusca%' or
+                                        editoras.nome_editora like '%$pusca%' or 
+                                        autor like '%$pusca%' or 
+                                        lancamento like '%$pusca%' or 
+                                        quantidade like '%$pusca%');");
 
     }else{
-        $sql_query = $conexao -> query("SELECT * FROM livros;");
+        $sql_query = $conexao -> query("SELECT * FROM livros,editoras where livros.editora_cod = editoras.cod_editora ;");
     }
 
 ?>
@@ -131,10 +132,7 @@
                     <p>Olá,<?php echo $_SESSION['nome']; ?></p>
                 </div>
                 <div class="box-sair">
-                    <a href="../conexao/sair.php">
-                        <i class="fa-solid fa-right-to-bracket fa-xl"></i>
-                        <p>Sair</p>
-                    </a>
+                    <a href="../conexao/sair.php">Sair</a>
                 </div>
             </div>
         </div>
@@ -150,7 +148,7 @@
                     <li>Editora</li>
                 </a>
                 <a href="livro.php">
-                    <li>Livro</li>
+                    <li style="background-color: black; color:aliceblue; border-radius: 10px;">Livro</li>
                 </a>
                 <a href="aluguel.php">
                     <li>Aluguel</li>
@@ -168,7 +166,7 @@
             <div class="box-pes">
                 <form>
                     <input type="text" name="pusca"> 
-                    <button type="submit"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" style="background-color: transparent;"> <i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
  
@@ -182,7 +180,7 @@
                     <th>Autor</th>
                     <th>lançamento</th>
                     <th>quantidade</th>
-                    
+                    <th>Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -192,10 +190,11 @@
                         <tr>
                             <td><?php echo $cont['id_livro'];?></td>
                             <td><?php echo $cont['nome_livro'];?></td>
-                            <td><?php echo $cont['editora_cod'];?></td>
+                            <td><?php echo $cont['nome_editora'];?></td>
                             <td><?php echo $cont['autor'];?></td>
                             <td><?php echo $cont['lancamento'];?></td>
                             <td><?php echo $cont['quantidade'];?></td>
+                            <td><a href="../edit/e-livro.php?<?php echo $cont['id_livro'];?>'">edit</a></td>
                         </tr>                     
                         <?php
                     }

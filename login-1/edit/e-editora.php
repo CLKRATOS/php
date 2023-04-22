@@ -1,21 +1,26 @@
 <?php 
-    include_once("../conexao/conexao.php");
     session_start();
-    if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
-        unset($_SESSION['nome']);
-        unset($_SESSION['senha']);
+    if((!isset($_SESSION['name']) == true) && (!isset($_SESSION['senha']) == true)){
+        unset($_SESSION['name']);
+        unset($_SESSION['name']);
         header("location:../index.php");
     }
-    if(isset($_POST['cadrastra']) && !empty($_POST['nome_livro'])  && !empty($_POST['autor'] )&& !empty($_POST['lancamento']) && !empty($_POST['quantidade'])){
-        $nome = $_POST['nome_livro']; 
-        $editora = $_POST['editora']; 
-        $autor = $_POST['autor'];
-        $lancamento = $_POST['lancamento'];
-        $quantidade = $_POST['quantidade'];
-        $conexao -> query("INSERT INTO  livros value (default,'$nome','$editora','$autor','$lancamento','$quantidade');");
-        header("location:../sistema/livro.php");
-    }
-      
+    require_once("../conexao/conexao.php");
+    if(!empty($_GET['id'])){
+        $id = $_GET['id'];
+        $select = $conexao -> query("SELECT * FROM editoras where cod_editora = $id;");
+        if($select -> num_rows == 1){
+            while ($cont = mysqli_fetch_assoc($select)) {            
+                $nome_editora = $cont['nome_editora'];
+                $cidade = $cont['cidade'];
+            }
+        }else{
+            header("location:../sistema/editora.php");
+        }
+     }else{
+        header("location:../sistema/editora.php");
+     }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,7 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        @import url('https  fon .googleapis.com/css2? family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('https:fonts.googleapis.com/css2? family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         *{
             font-family:  'Roboto', sans-serif;
             margin: 0;
@@ -132,40 +137,20 @@
 </head>
 <body>
     <main>
-        <form action="c-livro.php" method="POST">
-            <h1>Novo livro</h1>
+        <form action="../savEdit/s-editora.php" method="post">
+            <h1>Nova editora</h1>
             <div class="box-input">
-                <input type="text" name="nome_livro" required >
-                <label for="nome">Nome do livro</label>
+                <input type="text" name="nome_editora" value="<?php echo $nome_editora;?>" required >
+                <label for="nome">Nome da editora</label>
             </div>
             <div class="box-input">
-                <label for="nome">Editoras</label>
-                <select name="editora" id="editora">
-                    <?php 
-                        $sql = mysqli_query($conexao,"SELECT * FROM editoras;");
-                        while ($cont = mysqli_fetch_assoc($sql)) {
-                            ?>
-                                <option value="<?php echo $cont['cod_editora']?>"><?php echo $cont['nome_editora']?></option>
-                            <?php
-                        }
-                    ?>
-                </select>
+                <input type="text" name="cidade" value="<?php echo $cidade;?>" required >
+                <label for="nome">cidade</label>
             </div>
-            <div class="box-input">
-                <input type="text" name="autor" required >
-                <label for="nome">Autor</label>
-            </div>
-            <div class="box-input">
-                <input type="date" value="" name="lancamento" required >
-                <label for="nome" style="top:8px;left: 7px;font-size: 0.8em;padding-right: 4px;padding-left: 4px;background-color:  rgba(255, 255, 255, 0.875);">data de Lançamento</label>
-            </div>
-            <div class="box-input">
-                <input type="lancamento" name="quantidade" required >
-                <label for="nome">Quantidade</label>
-            </div>
+            <input type="hidden" name="id" value="<?php echo $id?>">
             <div class="box-btn">
-                <input type="submit" value="cadrastra" name="cadrastra">
-                <a href="../sistema/livro.php">volta</a>
+                <input type="submit" value="Salva" name="salva">
+                <a href="../sistema/editora.php">volta</a>
             </div>
         </form>
     </main>

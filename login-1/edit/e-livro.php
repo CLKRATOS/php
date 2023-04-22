@@ -1,21 +1,28 @@
 <?php 
-    include_once("../conexao/conexao.php");
     session_start();
-    if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
-        unset($_SESSION['nome']);
-        unset($_SESSION['senha']);
-        header("location:../index.php");
-    }
-    if(isset($_POST['cadrastra']) && !empty($_POST['nome_livro'])  && !empty($_POST['autor'] )&& !empty($_POST['lancamento']) && !empty($_POST['quantidade'])){
-        $nome = $_POST['nome_livro']; 
-        $editora = $_POST['editora']; 
-        $autor = $_POST['autor'];
-        $lancamento = $_POST['lancamento'];
-        $quantidade = $_POST['quantidade'];
-        $conexao -> query("INSERT INTO  livros value (default,'$nome','$editora','$autor','$lancamento','$quantidade');");
+     if((!isset($_SESSION['name']) == true) && (!isset($_SESSION['senha']) == true)){
+         unset($_SESSION['name']);
+         unset($_SESSION['name']);
+         header("location:../index.php");
+     }
+    require_once("../conexao/conexao.php");
+    if(!empty( $_GET['id'])){
+        @$id = $_GET['id'];    
+        $select = $conexao -> query("SELECT * FROM livros where id_livro = $id;");
+        if($select -> num_rows == 1 ){
+            while ($conta = mysqli_fetch_assoc($select)) {
+                $nome_livro = $conta['nome_livro'];
+                $editora_cod = $conta['editora_cod'];
+                $autor = $conta['autor'];
+                $lancamento = $conta['lancamento'];
+                $quantidade = $conta['quantidade'];
+            }
+        }else{
+            header("location:../sistema/livro.php");
+        }
+    }else{
         header("location:../sistema/livro.php");
     }
-      
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -132,35 +139,39 @@
 </head>
 <body>
     <main>
-        <form action="c-livro.php" method="POST">
+        <form action="" method="POST">
             <h1>Novo livro</h1>
             <div class="box-input">
-                <input type="text" name="nome_livro" required >
+                <input type="text" name="nome_livro" value="<?php echo $nome_livro ?>" required >
                 <label for="nome">Nome do livro</label>
             </div>
             <div class="box-input">
                 <label for="nome">Editoras</label>
                 <select name="editora" id="editora">
                     <?php 
-                        $sql = mysqli_query($conexao,"SELECT * FROM editoras;");
+                        $sql = $conexao -> query("SELECT * FROM editoras ORDER BY cod_editora ASC;");
                         while ($cont = mysqli_fetch_assoc($sql)) {
-                            ?>
-                                <option value="<?php echo $cont['cod_editora']?>"><?php echo $cont['nome_editora']?></option>
-                            <?php
+                            $cod_edit = $cont['cod_editora'];
+                            $nome = $cont['nome_editora'];
+                            if($cod_edit == $editora_cod){
+                                echo "<option value='$cod_edit' selected>$nome</option>";
+                            }else{
+                                echo "<option value='$cod_edit'>$nome</option>";
+                            }
                         }
                     ?>
                 </select>
             </div>
             <div class="box-input">
-                <input type="text" name="autor" required >
+                <input type="text" name="autor" value="<?php echo $autor;?>" required >
                 <label for="nome">Autor</label>
             </div>
             <div class="box-input">
-                <input type="date" value="" name="lancamento" required >
+                <input type="date" value="<?php echo $lancamento;?>" name="lancamento" required >
                 <label for="nome" style="top:8px;left: 7px;font-size: 0.8em;padding-right: 4px;padding-left: 4px;background-color:  rgba(255, 255, 255, 0.875);">data de Lançamento</label>
             </div>
             <div class="box-input">
-                <input type="lancamento" name="quantidade" required >
+                <input type="lancamento" name="quantidade" value="<?php echo $quantidade?>" required >
                 <label for="nome">Quantidade</label>
             </div>
             <div class="box-btn">
