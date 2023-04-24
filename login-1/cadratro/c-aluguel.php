@@ -1,17 +1,17 @@
 <?php 
     include_once("../conexao/conexao.php");
     session_start();
-    if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
-        unset($_SESSION['nome']);
-        unset($_SESSION['senha']);
-        header("location:../index.php");
-    }
-    if(isset($_GET['cadrastra']) && !empty($_GET['livro']) && !empty($_GET['usuario']) && !empty($_GET['aluguel'] )&& !empty($_GET['previsao'])){
-        echo  $livro = $_GET['livro'];
-        echo $usuario = $_GET['usuario'];
-        echo $aluguel = $_GET['aluguel'];
-        echo $previsao = $_GET['previsao'];
-        // $conexao -> query("INSERT INTO  aluga value (default,'$livro','$usuario','$aluguel','$previsao');");
+    // if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
+    //     unset($_SESSION['nome']);
+    //     unset($_SESSION['senha']);
+    //     header("location:../index.php");
+    // }
+    if(isset($_POST['cadrastra']) && !empty($_POST['livro']) && !empty($_POST['usuario']) && !empty($_POST['aluguel'] )&& !empty($_POST['previsao'])){
+        echo  $livro = $_POST['livro'],"<br>";
+        echo $usuario = $_POST['usuario'],"<br>";
+        echo $aluguel = $_POST['aluguel'],"<br>";
+        echo $previsao = $_POST['previsao'];
+        $conexao -> query("INSERT INTO  aluga value(default,'$livro','$usuario','$aluguel','$previsao',default);");
         // header("location:../sistema/aluguel.php");
     
     }
@@ -133,7 +133,7 @@
 </head>
 <body>
     <main>
-        <form action="c-aluguel.php" >
+        <form action="c-aluguel.php" method="post" >
             <h1>Alugar</h1>
             <div class="box-input">
                 <label for="nome"> livro</label>
