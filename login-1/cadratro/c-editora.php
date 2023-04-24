@@ -1,14 +1,14 @@
 <?php 
-    include_once("../conexao/conexao.php");
     session_start();
     if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
         unset($_SESSION['nome']);
         unset($_SESSION['senha']);
         header("location:../index.php");
     }
-    if(isset($_GET['cadrastra']) && !empty($_GET['nome_editora']) && !empty($_GET['cidade']) ){
-        $nome = $_GET['nome_editora'];
-        $cidade = $_GET['cidade'];
+    include_once("../conexao/conexao.php");
+    if(isset($_POST['cadrastra']) && !empty($_POST['nome_editora']) && !empty($_POST['cidade']) ){
+        $nome = $conexao -> real_escape_string($_POST['nome_editora']);
+        $cidade = $conexao -> real_escape_string($_POST['cidade']);
 
         $conexao -> query("INSERT INTO  editoras value (default,'$nome','$cidade');");
         header("location:../sistema/editora.php");
@@ -129,7 +129,7 @@
 </head>
 <body>
     <main>
-        <form action="c-editora.php" >
+        <form action="c-editora.php" method="post" >
             <h1>Nova editora</h1>
             <div class="box-input">
                 <input type="text" name="nome_editora" required >

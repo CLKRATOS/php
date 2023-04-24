@@ -139,7 +139,7 @@
 </head>
 <body>
     <main>
-        <form action="" method="POST">
+        <form action="../savEdit/s-livros.php" method="POST">
             <h1>Novo livro</h1>
             <div class="box-input">
                 <input type="text" name="nome_livro" value="<?php echo $nome_livro ?>" required >
@@ -174,8 +174,9 @@
                 <input type="lancamento" name="quantidade" value="<?php echo $quantidade?>" required >
                 <label for="nome">Quantidade</label>
             </div>
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="box-btn">
-                <input type="submit" value="cadrastra" name="cadrastra">
+                <input type="submit" value="Salva" name="salva">
                 <a href="../sistema/livro.php">volta</a>
             </div>
         </form>

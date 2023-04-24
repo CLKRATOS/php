@@ -8,7 +8,7 @@
     }
     include_once("../conexao/conexao.php");
     if(!empty($_GET['pusca'])){
-        $pusca = $_GET['pusca'];
+        $pusca = $conexao -> real_escape_string($_GET['pusca']);
         $sql_query = $conexao -> query("SELECT * FROM aluga,livros,usuarios where
                                         aluga.livro_cod = livros.id_livro and aluga.usuario_cod = usuarios.id_usuario and 
                                          (cod_aluguel like '%$pusca%' or 
@@ -16,7 +16,6 @@
                                          nome_usuario like '%$pusca%' or 
                                          data_aluguel like '%$pusca%' or 
                                          data_previsao like '%$pusca%') ;");
-
     }else{
         $sql_query = $conexao -> query("SELECT * FROM aluga,livros,usuarios where aluga.livro_cod = livros.id_livro and aluga.usuario_cod = usuarios.id_usuario ;");
     }
@@ -182,17 +181,23 @@
                 </thead>
                 <tbody>
                     <?php 
-                        while($cont = mysqli_fetch_assoc($sql_query)){
+                        if($sql_query -> num_rows == 0 ){
                             ?>
-                            <tr>
-                                <td><?php echo $cont['cod_aluguel'];?></td>
-                                <td><?php echo $cont['nome_livro'];?></td>
-                                <td><?php echo $cont['nome_usuario'];?></td>
-                                <td><?php echo $cont['data_aluguel'];?></td>
-                                <td><?php echo $cont['data_previsao'];?></td>
-                                
-                            </tr>                     
+                                <td colspan="10" style="font-size: 1.3em; font-weight: 800;">Descuper mas não temos essas opção</td>
                             <?php
+                        }else{
+                            while($cont = mysqli_fetch_assoc($sql_query)){
+                                ?>
+                                <tr>
+                                    <td><?php echo $cont['cod_aluguel'];?></td>
+                                    <td><?php echo $cont['nome_livro'];?></td>
+                                    <td><?php echo $cont['nome_usuario'];?></td>
+                                    <td><?php echo $cont['data_aluguel'];?></td>
+                                    <td><?php echo $cont['data_previsao'];?></td>
+                                    
+                                </tr>                     
+                                <?php
+                            }
                         }
                     ?>
                 </tbody>

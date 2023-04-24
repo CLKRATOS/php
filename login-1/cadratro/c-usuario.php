@@ -1,16 +1,16 @@
 <?php 
-    include_once("../conexao/conexao.php");
     session_start();
     if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
         unset($_SESSION['nome']);
         unset($_SESSION['senha']);
         header("location:../index.php");
     }
-    if(isset($_GET['cadrastra']) && !empty($_GET['nome_usuario']) && !empty($_GET['cidade']) && !empty($_GET['endereco'] )&& !empty($_GET['email'])){
-        $nome = $_GET['nome_usuario'];
-        $cidade = $_GET['cidade'];
-        $endereço = $_GET['endereco'];
-        $email = $_GET['email'];
+    include_once("../conexao/conexao.php");
+    if(isset($_POST['cadrastra']) && !empty($_POST['nome_usuario']) && !empty($_POST['cidade']) && !empty($_POST['endereco'] )&& !empty($_POST['email'])){
+        $nome = $conexao -> real_escape_string($_POST['nome_usuario']);
+        $cidade = $conexao -> real_escape_string($_POST['cidade']);
+        $endereço = $conexao -> real_escape_string($_POST['endereco']);
+        $email = $conexao -> real_escape_string($_POST['email']);
         $conexao -> query("INSERT INTO  usuarios value (default,'$nome','$cidade','$endereço','$email');");
         header("location:../sistema/usuario.php");
     }
@@ -131,7 +131,7 @@
 </head>
 <body>
     <main>
-        <form action="c-usuario.php" >
+        <form action="c-usuario.php" method="post">
             <h1>Novo usuario</h1>
             <div class="box-input">
                 <input type="text" name="nome_usuario" required >

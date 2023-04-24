@@ -1,18 +1,18 @@
 <?php 
-    include_once("../conexao/conexao.php");
     session_start();
-    // if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
-    //     unset($_SESSION['nome']);
-    //     unset($_SESSION['senha']);
-    //     header("location:../index.php");
-    // }
+    if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
+        unset($_SESSION['nome']);
+        unset($_SESSION['senha']);
+        header("location:../index.php");
+    }
+    include_once("../conexao/conexao.php");
     if(isset($_POST['cadrastra']) && !empty($_POST['livro']) && !empty($_POST['usuario']) && !empty($_POST['aluguel'] )&& !empty($_POST['previsao'])){
-        echo  $livro = $_POST['livro'],"<br>";
-        echo $usuario = $_POST['usuario'],"<br>";
-        echo $aluguel = $_POST['aluguel'],"<br>";
-        echo $previsao = $_POST['previsao'];
+        echo  $livro = $conexao -> real_escape_string($_POST['livro']);
+        echo $usuario = $conexao -> real_escape_string($_POST['usuario']);
+        echo $aluguel = $conexao -> real_escape_string($_POST['aluguel']);
+        echo $previsao = $conexao -> real_escape_string($_POST['previsao']);
         $conexao -> query("INSERT INTO  aluga value(default,'$livro','$usuario','$aluguel','$previsao',default);");
-        // header("location:../sistema/aluguel.php");
+        header("location:../sistema/aluguel.php");
     
     }
      

@@ -1,11 +1,11 @@
 <?php 
-    include_once("../conexao/conexao.php");
     session_start();
     if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) ){
         unset($_SESSION['nome']);
         unset($_SESSION['senha']);
         header("location:../index.php");
     }
+    include_once("../conexao/conexao.php");
     if(isset($_POST['cadrastra']) && !empty($_POST['nome_livro'])  && !empty($_POST['autor'] )&& !empty($_POST['lancamento']) && !empty($_POST['quantidade'])){
         $nome = $_POST['nome_livro']; 
         $editora = $_POST['editora']; 

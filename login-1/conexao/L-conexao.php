@@ -10,7 +10,7 @@
        
 
         $sql_query = $conexao -> query("SELECT * FROM acesso where nome_usuario = '$name' and senha = '$senha' ;"); 
-        print_r($sql_query);
+        // print_r($sql_query);
 
         if(mysqli_num_rows($sql_query) == 1){
             $_SESSION['nome'] =  $name = $_POST['nome_usuario'];
