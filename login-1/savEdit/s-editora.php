@@ -8,8 +8,8 @@
     require_once("../conexao/conexao.php");
     if(isset($_POST['salva'])){
         $id = $_POST['id'];
-        $nome = $conexao -> real_escape_string($_POST['nome_editora']);
-        $cidade = $conexao -> real_escape_string($_POST['cidade']);
+        $nome = $_POST['nome_editora'];
+        $cidade = $_POST['cidade'];
         $conexao -> query("UPDATE editoras set nome_editora = '$nome',cidade = '$cidade' where cod_editora = $id ");
         header("location:../sistema/editora.php");
 

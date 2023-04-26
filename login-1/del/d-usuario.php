@@ -1,11 +1,9 @@
 <?php 
-
     session_start();
-     if((!isset($_SESSION['name']) == true) && (!isset($_SESSION['senha']) == true)){
+    if((!isset($_SESSION['name']) == true) && (!isset($_SESSION['senha']) == true)){
         unset($_SESSION['name']);
-        unset($_SESSION['senha']);
+        unset($_SESSION['name']);
         header("location:../index.php");
-     
     }
     require_once("../conexao/conexao.php");
     if(!empty($_GET['id'])){
@@ -24,6 +22,25 @@
     }else{
         header("location:../sistema/usuario.php");
     }
+    if(isset($_POST['deleta'])){
+        $id = $_POST['id'];
+        $nome_usuario = $_POST['nome_usuario'];
+        $cidade = $_POST['cidade'];
+        $endereco = $_POST['endereco'];
+        $email = $_POST['email'];
+        $sqlo = $conexao -> query("SELECT * FROM usuarios where id_usuario = $id 
+                                                        and nome_usuario = '$nome_usuario' 
+                                                        and cidade_usuario = '$cidade' 
+                                                        and endereco = '$endereco' 
+                                                        and email = '$email';");
+        if($sqlo -> num_rows == 1){
+            $conexao -> query("DELETE FROM usuarios WHERE id_usuario = $id;");
+            header("location:../sistema/usuario.php");
+        }else {
+            echo "<script> alert('por favor não altere os dados');</script>";
+        }   
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,7 +51,7 @@
     <title>Document</title>
     
     <style>
-        @import url('https//:fonts.googleapis.com/css2? family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('httpsfonts.googleapis.com/css2? family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         *{
             font-family:  'Roboto', sans-serif;
             margin: 0;
@@ -141,7 +158,7 @@
 </head>
 <body>
     <main>
-        <form action="../savEdit/s-usuario.php" method="post" >
+        <form action="" method="post" >
             <h1>Novo usuario</h1>
             <div class="box-input">
                 <input type="text" name="nome_usuario" value="<?php echo $nome_usuario;?>" required >
@@ -161,7 +178,7 @@
             </div>
             <input type="hidden" value="<?php echo $id?>" name="id">
             <div class="box-btn">
-                <input type="submit" value="salva" name="salva">
+                <input type="submit" value="Deleta" name="deleta">
                 <a href="../sistema/usuario.php">volta</a>
             </div>
         </form>

@@ -1,10 +1,10 @@
 <?php 
     session_start();
-     if((!isset($_SESSION['name']) == true) && (!isset($_SESSION['senha']) == true)){
-         unset($_SESSION['name']);
-         unset($_SESSION['name']);
-         header("location:../index.php");
-     }
+    if((!isset($_SESSION['name']) == true) && (!isset($_SESSION['senha']) == true)){
+        unset($_SESSION['name']);
+        unset($_SESSION['senha']);
+        header("location:../sistema/livro.php");
+    }
     require_once("../conexao/conexao.php");
     if(!empty( $_GET['id'])){
         @$id = $_GET['id'];    
@@ -22,6 +22,27 @@
         }
     }else{
         header("location:../sistema/livro.php");
+    }
+    if(isset($_POST['deleta'])){
+        $id = $_POST['id'];
+        $nome = $_POST['nome_livro'];
+        $editora = $_POST['editora'];
+        $auto = $_POST['autor'];
+        $lacamento = $_POST['lancamento'];
+        $quantidade = $_POST['quantidade'];
+        $sqlo = $conexao -> query("SELECT * FROM livros where id_livro = $id 
+                                                        and nome_livro = '$nome' 
+                                                        and editora_cod = '$editora'
+                                                        and autor = '$auto'
+                                                        and lancamento = '$lacamento'
+                                                        and quantidade = '$quantidade';");
+        if($sqlo -> num_rows == 1){
+            $conexao -> query("DELETE FROM livros WHERE id_livro = $id;");
+            header("location:../sistema/livro.php");
+        }else{
+            echo "<script>alert('por favor não altere os dados');</script>";
+        }
+
     }
 ?>
 <!DOCTYPE html>
@@ -139,7 +160,7 @@
 </head>
 <body>
     <main>
-        <form action="../savEdit/s-livros.php" method="POST">
+        <form action="" method="POST">
             <h1>Novo livro</h1>
             <div class="box-input">
                 <input type="text" name="nome_livro" value="<?php echo $nome_livro ?>" required >
@@ -176,7 +197,7 @@
             </div>
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="box-btn">
-                <input type="submit" value="Salva" name="salva">
+                <input type="submit" value="Deleta" name="deleta">
                 <a href="../sistema/livro.php">volta</a>
             </div>
         </form>
