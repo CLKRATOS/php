@@ -109,6 +109,16 @@
             right: 10px;
             top: 5px;
         }
+        .box-sistema .li{
+            background-color: black; 
+            color:aliceblue; 
+            border-radius: 10px; 
+        }
+        .box-sistema .li:hover{
+            background-color: rgba(0, 0, 0, 0.754);
+            color:white;
+
+        }
     </style>
 </head>
 <body>
@@ -140,7 +150,7 @@
                     <li>inicio</li>
                 </a>
                 <a href="usuario.php">
-                    <li style="background-color: black; color:aliceblue; border-radius: 10px;">Usuário</li>
+                    <li class="li">Usuário</li>
                 </a>
                 <a href="editora.php">
                     <li>Editora</li>

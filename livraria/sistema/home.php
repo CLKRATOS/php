@@ -156,7 +156,16 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
             border: none;
 
         }
+        .box-sistema .li{
+            background-color: black; 
+            color:aliceblue; 
+            border-radius: 10px; 
+        }
+        .box-sistema .li:hover{
+            background-color: rgba(0, 0, 0, 0.754);
+            color:white;
 
+        }
 
         main{
             width: 500px;
@@ -197,7 +206,7 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
         <div class="box-sistema">
             <ul>
                 <a href="home.php">
-                    <li style="background-color: black; color:aliceblue; border-radius: 10px;">inicio</li>
+                    <li class="li">inicio</li>
                 </a>
                 <a href="usuario.php">
                     <li>Usuário</li>

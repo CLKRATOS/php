@@ -94,6 +94,7 @@
             left: 19px;
             transition: 0.2s linear;
             color: rgba(0, 0, 0, 0.715);
+            pointer-events: none;
 
         }
 
@@ -151,7 +152,7 @@
 <body>
     <main>
         <form action="" method="post">
-            <h1>Nova editora</h1>
+            <h1>Deletar editora</h1>
             <div class="box-input">
                 <input type="text" name="nome_editora" value="<?php echo $nome_editora;?>" required >
                 <label for="nome">Nome da editora</label>

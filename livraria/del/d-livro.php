@@ -104,6 +104,7 @@
             left: 19px;
             transition: 0.2s linear;
             color: rgba(0, 0, 0, 0.715);
+            pointer-events: none;
 
         }
 
@@ -161,7 +162,7 @@
 <body>
     <main>
         <form action="" method="POST">
-            <h1>Novo livro</h1>
+            <h1>Deletar livro</h1>
             <div class="box-input">
                 <input type="text" name="nome_livro" value="<?php echo $nome_livro ?>" required >
                 <label for="nome">Nome do livro</label>

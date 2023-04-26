@@ -57,6 +57,7 @@
             left: 19px;
             transition: 0.2s linear;
             color: rgba(0, 0, 0, 0.715);
+            pointer-events: none;
 
         }
 

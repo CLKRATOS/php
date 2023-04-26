@@ -110,6 +110,16 @@
             right: 10px;
             top: 5px;
         }
+        .box-sistema .li{
+            background-color: black; 
+            color:aliceblue; 
+            border-radius: 10px; 
+        }
+        .box-sistema .li:hover{
+            background-color: rgba(0, 0, 0, 0.754);
+            color:white;
+
+        }
     </style>
 </head>
 <body>
@@ -147,7 +157,7 @@
                     <li>Editora</li>
                 </a>
                 <a href="livro.php">
-                    <li style="background-color: black; color:aliceblue; border-radius: 10px;">Livro</li>
+                    <li class="li">Livro</li>
                 </a>
                 <a href="aluguel.php">
                     <li>Aluguel</li>

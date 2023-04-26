@@ -102,6 +102,7 @@
             left: 19px;
             transition: 0.2s linear;
             color: rgba(0, 0, 0, 0.715);
+            pointer-events: none;
 
         }
 
@@ -159,7 +160,7 @@
 <body>
     <main>
         <form action="" method="post" >
-            <h1>Novo usuario</h1>
+            <h1>Deletar usuario</h1>
             <div class="box-input">
                 <input type="text" name="nome_usuario" value="<?php echo $nome_usuario;?>" required >
                 <label for="nome">Nome do usuario</label>
