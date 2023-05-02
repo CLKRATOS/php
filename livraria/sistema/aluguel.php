@@ -199,6 +199,7 @@
                             while($cont = mysqli_fetch_assoc($sql_query)){
                                 ?>
                                 <tr>
+                                    <td><input type="hidden" class="livro_cod" value="<?php echo $cont['livro_cod'];?>"></td>
                                     <td><?php echo $cont['cod_aluguel'];?></td>
                                     <td><?php echo $cont['nome_livro'];?></td>
                                     <td><?php echo $cont['nome_usuario'];?></td>
@@ -213,6 +214,6 @@
                 </tbody>
         </table>
     </main>
-
+    <script src="js/js.js"></script>
 </body>
 </html>

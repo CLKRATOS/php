@@ -229,9 +229,10 @@ if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true) )
     <main>
         <h1>vamos começa o teste</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quis minima enim veritatis, rem fuga id est quas deleniti qui cupiditate omnis! Doloribus, minus enim explicabo iste consequuntur rem quas? Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, tenetur, blanditiis quidem, illum ab et corporis sit quibusdam exercitationem aperiam optio voluptatem quasi est doloremque quia libero aut voluptates perspiciatis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quis minima enim veritatis, rem fuga id est quas deleniti qui cupiditate omnis! Doloribus, minus enim explicabo iste consequuntur rem quas? Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, tenetur, blanditiis quidem, illum ab et corporis sit quibusdam exercitationem aperiam optio voluptatem quasi est doloremque quia libero aut voluptates perspiciatis Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quis minima enim veritatis, rem fuga id est quas deleniti qui cupiditate omnis! Doloribus, minus enim explicabo iste consequuntur rem quas? Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, tenetur, blanditiis quidem, illum ab et corporis sit quibusdam exercitationem aperiam optio voluptatem quasi est doloremque quia libero aut voluptates perspiciatis</p>
+        <p class="livro"></p>
     </main>
   
-   
+    <script src="js/js.js"></script>
 
 </body>
 </html>
